@@ -1,5 +1,5 @@
 # pull official base image
-FROM python:3.8.1-alpine
+FROM python:3.11-alpine
 
 # set work directory
 WORKDIR /src/app
@@ -7,6 +7,7 @@ WORKDIR /src/app
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
+ENV PYTHOPATH ..
 
 # copy requirements file
 COPY ./requirements.txt /src/app/requirements.txt
