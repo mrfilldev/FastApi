@@ -1,24 +1,23 @@
 # pull official base image
-FROM python:3.11-alpine
+FROM python:3.8.1-alpine
 
 # set work directory
-WORKDIR /src/app
+WORKDIR /usr/src/app
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
-ENV PYTHOPATH ..
 
 # copy requirements file
-COPY ./requirements.txt /src/app/requirements.txt
+COPY ./requirements.txt /usr/src/app/requirements.txt
 
 # install dependencies
 RUN set -eux \
     && apk add --no-cache --virtual .build-deps build-base \
         libressl-dev libffi-dev gcc musl-dev python3-dev \
     && pip install --upgrade pip setuptools wheel \
-    && pip install -r /src/app/requirements.txt \
+    && pip install -r /usr/src/app/requirements.txt \
     && rm -rf /root/.cache/pip
 
 # copy project
-COPY . /src/app/
+COPY . /usr/src/app/
