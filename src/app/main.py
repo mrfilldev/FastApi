@@ -1,3 +1,5 @@
+from typing import Union
+
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -9,6 +11,10 @@ async def root():
 
 
 @app.get("/ping")
-def pong():
+async def pong():
     return {"ping": "pong!"}
 
+
+@app.get("/items/{item_id}")
+async def read_item(item_id: int, q: Union[str, None] = None):
+    return {"item_id": item_id, "q": q}
