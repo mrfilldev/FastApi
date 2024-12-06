@@ -11,3 +11,4 @@ async def root():
 @app.get("/ping")
 def pong():
     return {"ping": "pong!"}
+
